@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday!</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            text-align: center;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff3366;
+            font-size: 50px;
+            margin-top: 50px;
+            animation: bounce 1s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        .carousel {
+            position: relative;
+            max-width: 80%;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+            transition: opacity 1s ease-in-out;
+        }
+        .carousel img.active {
+            display: block;
+            opacity: 1;
+        }
+        .message-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 80%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            margin-top: 20px;
+            font-size: 22px;
+            color: #333;
+        }
+        .message-box h2 {
+            font-size: 30px;
+            color: #ff3366;
+        }
+        .heartfelt-message {
+            font-size: 20px;
+            font-weight: bold;
+            background: #ffe0e6;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Happy Birthday! 🎂</h1>
+
+    <!-- Image Carousel -->
+    <div class="carousel">
+        <img src="{{ url_for('static', filename='images/1.jpg') }}" class="active">
+        <img src="{{ url_for('static', filename='images/2.jpg') }}">
+        <img src="{{ url_for('static', filename='images/3.jpg') }}">
+    </div>
+
+    <!-- Birthday Message -->
+    <!-- <div class="message-box">
+        <h2>🎁 A Special Message for You</h2>
+        <p>
+            Wishing you a day filled with love, joy, and laughter.  
+            You are an amazing person, and I hope this year brings you  
+            everything your heart desires.  
+            Enjoy your special day! 🎂🎈
+        </p>
+    </div> -->
+
+    <!-- Heartfelt Message Section -->
+    <div class="message-box heartfelt-message">
+        {{ heartfelt_message }}
+    </div>
+
+    <script>
+        // Image Carousel
+        let images = document.querySelectorAll(".carousel img");
+        let index = 0;
+        setInterval(() => {
+            images[index].classList.remove("active");
+            index = (index + 1) % images.length;
+            images[index].classList.add("active");
+        }, 3000);
+
+        // Force autoplay on mobile browsers
+        document.addEventListener("click", function() {
+            let music = document.getElementById("bg-music");
+            if (music.paused) {
+                music.play();
+            }
+        });
+    </script>
+</body>
+</html>
